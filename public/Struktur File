@@ -1,0 +1,122 @@
+reactq/
+├── src/
+│   ├── main.rs              # Tauri entry point
+│   └── lib.rs               # Rust logic untuk heavy computation
+├── src-tauri/
+│   ├── Cargo.toml
+│   └── tauri.conf.json
+├── public/
+│   ├── audios/
+│   │   ├── tartil/
+│   │   ├── tarhim/
+│   │   └── adhan/
+│   └── images/
+│       ├── mosque/
+│       └── slides/
+├── src/ (Frontend)
+│   ├── components/
+│   │   ├── PrayerTimes/
+│   │   │   ├── PrayerTimesDisplay.tsx
+│   │   │   ├── CountdownTimer.tsx
+│   │   │   ├── PrayerAlert.tsx
+│   │   │   └── PrayerStatusCard.tsx      # NEW
+│   │   ├── Clock/
+│   │   │   ├── DigitalClock.tsx
+│   │   │   ├── HijriDate.tsx
+│   │   │   ├── GregorianDate.tsx
+│   │   │   └── DateTimeDisplay.tsx       # NEW
+│   │   ├── Media/
+│   │   │   ├── RunningText.tsx
+│   │   │   ├── ImageCarousel.tsx
+│   │   │   ├── VideoPlayer.tsx
+│   │   │   └── MediaController.tsx       # NEW
+│   │   ├── Audio/
+│   │   │   ├── AudioManager.tsx
+│   │   │   ├── TartilPlayer.tsx
+│   │   │   ├── TarhimPlayer.tsx
+│   │   │   ├── AdhanPlayer.tsx          # NEW
+│   │   │   └── AudioVisualizer.tsx      # NEW
+│   │   ├── MosqueInfo/
+│   │   │   ├── MosqueHeader.tsx
+│   │   │   ├── MosqueLogo.tsx           # NEW
+│   │   │   └── MosqueContact.tsx        # NEW
+│   │   ├── PrayerFlow/                  # NEW FOLDER
+│   │   │   ├── PrayerTimeScreen.tsx     # Saat waktu sholat tiba
+│   │   │   ├── AdzanScreen.tsx          # Tampilan adzan
+│   │   │   ├── IqamahWaitScreen.tsx     # Tunggu iqamah
+│   │   │   └── PrayerPeriodScreen.tsx   # Waktu sholat berlangsung
+│   │   └── Common/
+│   │       ├── PrayerNotification.tsx
+│   │       ├── CountdownDisplay.tsx
+│   │       ├── ScreenTransition.tsx     # NEW
+│   │       └── EmergencyOverlay.tsx     # NEW
+│   ├── layouts/
+│   │   ├── MainLayout.tsx
+│   │   ├── PrayerLayout.tsx
+│   │   ├── SettingsLayout.tsx
+│   │   └── FullscreenLayout.tsx         # NEW
+│   ├── pages/
+│   │   ├── Dashboard.tsx
+│   │   ├── Settings.tsx
+│   │   ├── SplashScreen.tsx
+│   │   ├── PrayerFlowContainer.tsx      # NEW: Koordinator flow sholat
+│   │   └── Screensaver.tsx              # NEW
+│   ├── stores/
+│   │   ├── prayerStore.ts               # ✅ SUDAH ADA
+│   │   ├── settingsStore.ts             # ✅ SUDAH ADA
+│   │   ├── audioStore.ts                # AKAN SAYA BUATKAN
+│   │   ├── uiStore.ts                   # ✅ SUDAH ADA
+│   │   ├── prayerFlowStore.ts           # NEW: Manage flow sholat
+│   │   └── notificationStore.ts         # NEW: Notifikasi sistem
+│   ├── services/
+│   │   ├── prayerCalculator.ts
+│   │   ├── hijriConverter.ts
+│   │   ├── audioService.ts
+│   │   ├── storageService.ts
+│   │   ├── notificationService.ts
+│   │   ├── prayerFlowService.ts         # NEW: Service flow sholat
+│   │   ├── timeScheduler.ts             # NEW: Scheduler event
+│   │   └── tauriBridge.ts               # NEW: Bridge ke Rust
+│   ├── utils/
+│   │   ├── constants.ts
+│   │   ├── prayerMath.ts
+│   │   ├── dateUtils.ts
+│   │   ├── formatters.ts
+│   │   ├── audioUtils.ts                # NEW
+│   │   ├── validation.ts                # NEW
+│   │   └── screenManager.ts             # NEW
+│   ├── types/
+│   │   ├── prayer.types.ts              # ✅ SUDAH ADA
+│   │   ├── settings.types.ts            # ✅ SUDAH ADA
+│   │   ├── global.types.ts              # AKAN SAYA BUATKAN
+│   │   ├── audio.types.ts               # NEW
+│   │   └── prayerFlow.types.ts          # NEW
+│   ├── hooks/
+│   │   ├── usePrayerTimes.ts
+│   │   ├── useAudioControl.ts
+│   │   ├── useSettings.ts
+│   │   ├── usePrayerFlow.ts             # NEW
+│   │   ├── useScreenManager.ts          # NEW
+│   │   └── useInterval.ts               # NEW
+│   ├── styles/
+│   │   ├── global.css
+│   │   ├── themes/
+│   │   │   ├── light.css
+│   │   │   ├── dark.css
+│   │   │   └── green.css
+│   │   ├── animations.css
+│   │   └── prayer-flow.css              # NEW: Style khusus flow
+│   ├── config/
+│   │   ├── audioConfig.ts               # NEW: Konfig audio default
+│   │   ├── screenConfig.ts              # NEW: Konfig tampilan
+│   │   └── prayerMethods.ts             # NEW: Metode kalkulasi
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── vite-env.d.ts
+├── config/
+│   ├── defaultSettings.json
+│   ├── prayerMethods.json
+│   └── locations.json
+├── tests/
+├── package.json
+└── vite.config.ts
