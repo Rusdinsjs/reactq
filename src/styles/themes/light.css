@@ -1,0 +1,13 @@
+/* Light Theme */
+[data-theme="light"] {
+    --color-primary: #059669;
+    --color-primary-dark: #047857;
+    --color-primary-rgb: 5, 150, 105;
+    --color-accent: #d97706;
+    --color-background: #f8fafc;
+    --color-surface: #ffffff;
+    --color-surface-dark: #f1f5f9;
+    --color-text: #1e293b;
+    --color-text-secondary: #64748b;
+    --color-border: #e2e8f0;
+}

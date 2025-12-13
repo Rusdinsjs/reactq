@@ -1,0 +1,54 @@
+/* Dark Theme - Modern Linear-inspired Slate/Zinc palette */
+
+[data-theme="dark"] {
+    /* Primary Colors - Modern gradient-friendly */
+    --color-primary: #6366f1;
+    --color-primary-dark: #4f46e5;
+    --color-primary-light: #818cf8;
+    --color-primary-rgb: 99, 102, 241;
+
+    /* Accent - Warm contrast */
+    --color-accent: #f59e0b;
+    --color-accent-light: #fbbf24;
+
+    /* Background - Slate tones */
+    --color-background: #0f172a;
+    --color-background-alt: #020617;
+
+    /* Surface - Zinc-inspired */
+    --color-surface: #1e293b;
+    --color-surface-dark: #334155;
+    --color-surface-light: #475569;
+
+    /* Text */
+    --color-text: #f8fafc;
+    --color-text-secondary: #94a3b8;
+    --color-text-muted: #64748b;
+
+    /* Borders */
+    --color-border: #334155;
+    --color-border-light: #475569;
+
+    /* Status Colors */
+    --color-success: #22c55e;
+    --color-warning: #f59e0b;
+    --color-error: #ef4444;
+    --color-info: #3b82f6;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    --gradient-accent: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+    --gradient-surface: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+
+    /* Glass morphism */
+    --glass-bg: rgba(30, 41, 59, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+}

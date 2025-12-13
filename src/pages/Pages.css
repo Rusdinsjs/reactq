@@ -1,0 +1,332 @@
+/* Pages Styles */
+
+/* Dashboard - Base */
+.dashboard {
+    display: flex;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+.dashboard__main {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 1rem;
+    flex: 1;
+    min-height: 0;
+    padding: 1rem;
+}
+
+.dashboard__clock-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+}
+
+.dashboard__media-section {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    min-height: 300px;
+}
+
+.dashboard__countdown-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Vertical Prayer Times Aside - 20% width */
+.dashboard__prayer-aside {
+    width: 20vw;
+    min-width: 220px;
+    max-width: 320px;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.dashboard__prayer-aside--left {
+    order: -1;
+}
+
+.dashboard__prayer-aside--right {
+    order: 1;
+}
+
+/* Horizontal Prayer Times - 20% height, flush with running text */
+.dashboard__prayer-section--horizontal {
+    height: 20vh;
+    min-height: 120px;
+    margin: 0 1rem;
+    margin-bottom: 0;
+}
+
+.dashboard__prayer-section--horizontal .prayer-times {
+    height: 100%;
+}
+
+.dashboard__prayer-section--horizontal .prayer-times__track {
+    height: 100%;
+}
+
+.dashboard__prayer-section--horizontal .prayer-times__item {
+    height: 90%;
+    align-self: center;
+}
+
+/* Running Text - Always at bottom */
+.dashboard__running-text {
+    flex-shrink: 0;
+}
+
+/* Settings Button */
+.dashboard__settings-btn {
+    position: fixed;
+    bottom: 5rem;
+    right: 1rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: var(--color-surface);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 50;
+}
+
+.dashboard__settings-btn:hover {
+    background: var(--color-primary);
+    transform: scale(1.1);
+}
+
+/* Settings Page */
+.settings-page {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.settings-section {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.settings-section__title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.settings-group {
+    margin-bottom: 1rem;
+}
+
+.settings-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.settings-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-background);
+    color: var(--color-text);
+    font-size: 1rem;
+}
+
+.settings-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.settings-select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-background);
+    color: var(--color-text);
+    font-size: 1rem;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    padding-right: 2.5rem;
+}
+
+.settings-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.settings-select option {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding: 0.5rem;
+}
+
+.settings-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.settings-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.settings-btn--primary {
+    background: var(--color-primary);
+    color: white;
+}
+
+.settings-btn--primary:hover {
+    background: var(--color-primary-dark);
+}
+
+.settings-btn--secondary {
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+/* Splash Screen */
+.splash-screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    color: white;
+    z-index: 9999;
+}
+
+.splash-screen__logo {
+    font-size: 6rem;
+    margin-bottom: 2rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.splash-screen__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.splash-screen__subtitle {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+.splash-screen__loader {
+    margin-top: 3rem;
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Screensaver */
+.screensaver {
+    cursor: none;
+}
+
+.screensaver__clock {
+    font-size: 15rem;
+    font-weight: 700;
+    font-family: 'Roboto Mono', monospace;
+    color: white;
+    text-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
+}
+
+.screensaver__date {
+    margin-top: 2rem;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Prayer Flow Container */
+.prayer-flow-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .dashboard__main {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .dashboard__media-section {
+        grid-column: span 2;
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard__main {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard__media-section {
+        grid-column: span 1;
+        min-height: 200px;
+    }
+
+    .screensaver__clock {
+        font-size: 8rem;
+    }
+}

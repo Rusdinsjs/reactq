@@ -1,0 +1,83 @@
+/* Green Islamic Theme */
+[data-theme="green"] {
+    --color-primary: #166534;
+    --color-primary-dark: #14532d;
+    --color-primary-rgb: 22, 101, 52;
+    --color-accent: #ca8a04;
+    --color-background: #052e16;
+    --color-surface: #14532d;
+    --color-surface-dark: #166534;
+    --color-text: #dcfce7;
+    --color-text-secondary: #86efac;
+    --color-border: #166534;
+}
+
+/* Blue Theme */
+[data-theme="blue"] {
+    --color-primary: #2563eb;
+    --color-primary-dark: #1d4ed8;
+    --color-primary-rgb: 37, 99, 235;
+    --color-accent: #f59e0b;
+    --color-background: #0f172a;
+    --color-surface: #1e3a5f;
+    --color-surface-dark: #1e40af;
+    --color-text: #e0f2fe;
+    --color-text-secondary: #7dd3fc;
+    --color-border: #1e40af;
+}
+
+/* Gold Theme */
+[data-theme="gold"] {
+    --color-primary: #b45309;
+    --color-primary-dark: #92400e;
+    --color-primary-rgb: 180, 83, 9;
+    --color-accent: #059669;
+    --color-background: #1c1917;
+    --color-surface: #292524;
+    --color-surface-dark: #44403c;
+    --color-text: #fef3c7;
+    --color-text-secondary: #fcd34d;
+    --color-border: #44403c;
+}
+
+/* Purple Theme */
+[data-theme="purple"] {
+    --color-primary: #7c3aed;
+    --color-primary-dark: #6d28d9;
+    --color-primary-rgb: 124, 58, 237;
+    --color-accent: #f59e0b;
+    --color-background: #0f0a1a;
+    --color-surface: #1e1533;
+    --color-surface-dark: #2e1f4d;
+    --color-text: #ede9fe;
+    --color-text-secondary: #c4b5fd;
+    --color-border: #2e1f4d;
+}
+
+/* Red Theme */
+[data-theme="red"] {
+    --color-primary: #dc2626;
+    --color-primary-dark: #b91c1c;
+    --color-primary-rgb: 220, 38, 38;
+    --color-accent: #f59e0b;
+    --color-background: #1a0a0a;
+    --color-surface: #2d1515;
+    --color-surface-dark: #451a1a;
+    --color-text: #fef2f2;
+    --color-text-secondary: #fca5a5;
+    --color-border: #451a1a;
+}
+
+/* Teal Theme */
+[data-theme="teal"] {
+    --color-primary: #0d9488;
+    --color-primary-dark: #0f766e;
+    --color-primary-rgb: 13, 148, 136;
+    --color-accent: #f59e0b;
+    --color-background: #042f2e;
+    --color-surface: #134e4a;
+    --color-surface-dark: #115e59;
+    --color-text: #ccfbf1;
+    --color-text-secondary: #5eead4;
+    --color-border: #115e59;
+}

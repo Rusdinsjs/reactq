@@ -1,0 +1,47 @@
+{
+    "theme": "dark",
+    "language": "id",
+    "location": {
+        "latitude": -6.2088,
+        "longitude": 106.8456,
+        "timezone": 7,
+        "city": "Jakarta",
+        "country": "Indonesia"
+    },
+    "calculationMethod": "Kemenag",
+    "asrJuristic": "Standard",
+    "audio": {
+        "volume": 0.8,
+        "tartilDuration": 20,
+        "tarhimDuration": 5,
+        "adhanDuration": 5,
+        "iqamahWaitDuration": 10,
+        "prayerDuration": 15
+    },
+    "display": {
+        "fullscreen": false,
+        "showSeconds": true,
+        "show24Hour": true,
+        "showHijriDate": true,
+        "showGregorianDate": true,
+        "clockSize": "large",
+        "screensaverTimeout": 30
+    },
+    "slides": {
+        "enabled": true,
+        "interval": 10
+    },
+    "runningText": {
+        "enabled": true,
+        "speed": 100,
+        "texts": [
+            "Selamat datang di Masjid",
+            "Mari ramaikan masjid dengan sholat berjamaah"
+        ]
+    },
+    "mosque": {
+        "name": "Masjid",
+        "address": "",
+        "city": ""
+    }
+}

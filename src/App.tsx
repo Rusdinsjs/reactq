@@ -1,50 +1,57 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { invoke } from "@tauri-apps/api/core";
-import "./App.css";
+// Main Application
+import { useEffect } from 'react';
+import { useScreenManager } from './hooks/useScreenManager';
+import { useSettings } from './hooks/useSettings';
+import { usePrayerFlow } from './hooks/usePrayerFlow';
+import { Dashboard, Settings, SplashScreen, Screensaver, PrayerFlowContainer } from './pages';
+
+// Import global styles
+import './styles/global.css';
+import './styles/animations.css';
+import './styles/themes/dark.css';
+import './styles/themes/light.css';
+import './styles/themes/green.css';
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
+  const { currentScreen, isTransitioning } = useScreenManager();
+  const { theme, isLoaded } = useSettings();
+  const { isInPrayerFlow } = usePrayerFlow();
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await invoke("greet", { name }));
+  // Apply theme to document
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  // Show splash until settings are loaded
+  if (!isLoaded) {
+    return <SplashScreen />;
   }
 
+  // Prayer flow takes priority over normal screens
+  if (isInPrayerFlow) {
+    return <PrayerFlowContainer />;
+  }
+
+  // Render current screen
+  const renderScreen = () => {
+    switch (currentScreen) {
+      case 'splash':
+        return <SplashScreen />;
+      case 'dashboard':
+        return <Dashboard />;
+      case 'settings':
+        return <Settings />;
+      case 'screensaver':
+        return <Screensaver />;
+      default:
+        return <Dashboard />;
+    }
+  };
+
   return (
-    <main className="container">
-      <h1>Welcome to Tauri + React</h1>
-
-      <div className="row">
-        <a href="https://vite.dev" target="_blank">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
-
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault();
-          greet();
-        }}
-      >
-        <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter a name..."
-        />
-        <button type="submit">Greet</button>
-      </form>
-      <p>{greetMsg}</p>
-    </main>
+    <div className={`app ${isTransitioning ? 'app--transitioning' : ''}`}>
+      {renderScreen()}
+    </div>
   );
 }
 

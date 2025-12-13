@@ -1,0 +1,238 @@
+/* Audio Component Styles */
+
+.audio-manager {
+    display: none;
+}
+
+/* Audio Visualizer */
+.audio-visualizer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 3px;
+    height: 60px;
+    padding: 0.5rem;
+}
+
+.audio-visualizer__bar {
+    width: 4px;
+    background: linear-gradient(to top, var(--color-primary), var(--color-accent));
+    border-radius: 2px;
+    animation: audioBar 0.5s ease-in-out infinite alternate;
+}
+
+.audio-visualizer__bar:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.audio-visualizer__bar:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.audio-visualizer__bar:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.audio-visualizer__bar:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.audio-visualizer__bar:nth-child(5) {
+    animation-delay: 0.15s;
+}
+
+.audio-visualizer__bar:nth-child(6) {
+    animation-delay: 0.25s;
+}
+
+.audio-visualizer__bar:nth-child(7) {
+    animation-delay: 0.05s;
+}
+
+.audio-visualizer__bar:nth-child(8) {
+    animation-delay: 0.35s;
+}
+
+.audio-visualizer--paused .audio-visualizer__bar {
+    animation-play-state: paused;
+}
+
+@keyframes audioBar {
+    0% {
+        height: 10px;
+    }
+
+    100% {
+        height: 50px;
+    }
+}
+
+/* Audio Player Controls */
+.audio-player {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+}
+
+.audio-player__info {
+    flex: 1;
+}
+
+.audio-player__title {
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+}
+
+.audio-player__subtitle {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+}
+
+.audio-player__controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.audio-player__btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: var(--color-primary);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+}
+
+.audio-player__btn:hover {
+    background: var(--color-primary-dark);
+    transform: scale(1.05);
+}
+
+.audio-player__btn--secondary {
+    width: 36px;
+    height: 36px;
+    background: var(--color-surface-dark);
+    color: var(--color-text);
+}
+
+.audio-player__progress {
+    flex: 1;
+    height: 4px;
+    background: var(--color-border);
+    border-radius: 2px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.audio-player__progress-bar {
+    height: 100%;
+    background: var(--color-primary);
+    transition: width 0.1s linear;
+}
+
+.audio-player__time {
+    font-size: 0.8rem;
+    font-family: 'Roboto Mono', monospace;
+    color: var(--color-text-secondary);
+    min-width: 80px;
+    text-align: center;
+}
+
+.audio-player__volume {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.audio-player__volume-slider {
+    width: 80px;
+    height: 4px;
+    -webkit-appearance: none;
+    background: var(--color-border);
+    border-radius: 2px;
+    outline: none;
+}
+
+.audio-player__volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Tartil Player */
+.tartil-player {
+    text-align: center;
+    padding: 2rem;
+}
+
+.tartil-player__title {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.tartil-player__subtitle {
+    color: var(--color-text-secondary);
+    font-family: 'Amiri', serif;
+    font-size: 1.2rem;
+    direction: rtl;
+}
+
+/* Adhan Player */
+.adhan-player {
+    text-align: center;
+    padding: 3rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    color: white;
+    border-radius: var(--radius-lg);
+}
+
+.adhan-player__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.adhan-player__arabic {
+    font-family: 'Amiri', serif;
+    font-size: 3rem;
+    direction: rtl;
+    margin-bottom: 2rem;
+}
+
+.adhan-player__visualizer {
+    margin: 2rem auto;
+    max-width: 200px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .audio-player {
+        flex-wrap: wrap;
+    }
+
+    .audio-player__volume {
+        display: none;
+    }
+
+    .adhan-player__title {
+        font-size: 1.8rem;
+    }
+
+    .adhan-player__arabic {
+        font-size: 2rem;
+    }
+}
