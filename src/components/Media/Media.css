@@ -1,37 +1,32 @@
 /* Media Component Styles */
 
-/* Running Text */
+/* Running Text - react-fast-marquee */
 .running-text {
     width: 100%;
-    overflow: hidden;
     background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-    padding: 1rem 0;
+    padding: 0.75rem 0;
     position: relative;
+}
+
+.running-text__marquee {
+    --gradient-color: var(--color-primary) !important;
 }
 
 .running-text__content {
     display: inline-flex;
+    align-items: center;
     white-space: nowrap;
-    animation: marquee linear infinite;
     color: white;
     font-size: 1.35rem;
     font-weight: 600;
     letter-spacing: 0.5px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 0 1rem;
 }
 
 .running-text__spacer {
     margin: 0 2rem;
-}
-
-@keyframes marquee {
-    0% {
-        transform: translateX(100%);
-    }
-
-    100% {
-        transform: translateX(-100%);
-    }
+    opacity: 0.7;
 }
 
 /* Image Carousel */
@@ -216,8 +211,8 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-    .running-text {
-        font-size: 0.9rem;
+    .running-text__content {
+        font-size: 1.1rem;
     }
 
     .image-carousel__nav {

@@ -9,12 +9,14 @@ interface MainLayoutProps {
     children: ReactNode;
     showHeader?: boolean;
     showRunningText?: boolean;
+    noPadding?: boolean;
 }
 
 export function MainLayout({
     children,
     showHeader = true,
     showRunningText = true,
+    noPadding = false,
 }: MainLayoutProps) {
     return (
         <div className="main-layout">
@@ -24,7 +26,7 @@ export function MainLayout({
                 </header>
             )}
 
-            <main className="main-layout__content">
+            <main className="main-layout__content" style={noPadding ? { padding: 0 } : undefined}>
                 {children}
             </main>
 
