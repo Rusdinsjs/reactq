@@ -137,7 +137,7 @@ export function Dashboard() {
                     ⚙️
                 </button>
             </div>
-        </MainLayout>
+        </MainLayout >
     );
 }
 

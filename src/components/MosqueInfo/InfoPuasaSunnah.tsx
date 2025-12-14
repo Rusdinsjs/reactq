@@ -100,7 +100,7 @@ export function InfoPuasaSunnah({ className = '' }: InfoPuasaSunnahProps) {
 
     return (
         <div className={`info-puasa-sunnah ${className}`}>
-            <div className="info-puasa-sunnah__label">Puasa Sunnah Berikutnya</div>
+            <div className="info-puasa-sunnah__label">{(fastingInfo.daysUntil === 0) ? "PUASA SUNNAH" : "PUASA SUNNAH BERIKUTNYA"}</div>
             <div className="info-puasa-sunnah__name">{fastingInfo.name}</div>
             <div className="info-puasa-sunnah__countdown">
                 <span className="info-puasa-sunnah__highlight">{fastingInfo.dateName}</span>

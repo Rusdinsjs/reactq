@@ -13,7 +13,6 @@ interface CountdownTimerProps {
 export function CountdownTimer({
     className = '',
     showPrayerName = true,
-    showLabels = true,
 }: CountdownTimerProps) {
     const { nextPrayer, secondsUntilNextPrayer, getDisplayName } = usePrayerTimes();
 
@@ -38,7 +37,7 @@ export function CountdownTimer({
                     <>
                         <div className="countdown-timer__segment">
                             <span className="countdown-timer__segment-value">{countdown.hours}</span>
-                            {showLabels && <span className="countdown-timer__segment-label">Jam</span>}
+                            {/* {showLabels && <span className="countdown-timer__segment-label">Jam</span>} */}
                         </div>
                         <span className="countdown-timer__separator">:</span>
                     </>
@@ -46,14 +45,12 @@ export function CountdownTimer({
 
                 <div className="countdown-timer__segment">
                     <span className="countdown-timer__segment-value">{countdown.minutes}</span>
-                    {showLabels && <span className="countdown-timer__segment-label">Menit</span>}
                 </div>
 
                 <span className="countdown-timer__separator">:</span>
 
                 <div className="countdown-timer__segment">
                     <span className="countdown-timer__segment-value">{countdown.seconds}</span>
-                    {showLabels && <span className="countdown-timer__segment-label">Detik</span>}
                 </div>
             </div>
         </div>

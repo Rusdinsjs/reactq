@@ -18,6 +18,7 @@
 
 .dashboard__main {
     display: grid;
+    /* Default grid (fallback) */
     grid-template-columns: 1fr 2fr 1fr;
     gap: 1rem;
     flex: 1;
@@ -172,18 +173,17 @@
     text-align: center;
     width: 100%;
     height: 100%;
+    text-transform: uppercase;
 
     /* Modern Glassmorphism Background */
-    background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    /* Subtle gold border */
+    backdrop-filter: blur(12px);
     box-shadow:
-        0 4px 6px -1px rgba(0, 0, 0, 0.1),
-        0 2px 4px -1px rgba(0, 0, 0, 0.06),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
+        0 8px 32px 0 rgba(0, 0, 0, 0.37),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    padding: 1rem;
     position: relative;
     overflow: hidden;
 }
@@ -192,80 +192,96 @@
 .info-puasa-sunnah::before {
     content: '';
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 150px;
-    height: 150px;
-    background: radial-gradient(circle at top right, rgba(var(--color-primary-rgb), 0.15), transparent 70%);
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(var(--color-primary-rgb), 0.1) 0%, transparent 60%);
+    transform: rotate(45deg);
     pointer-events: none;
 }
 
 .info-puasa-sunnah::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle at bottom left, rgba(var(--color-accent-rgb), 0.1), transparent 70%);
+    bottom: -20px;
+    left: -20px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.15), transparent 70%);
     pointer-events: none;
+    filter: blur(20px);
 }
 
 .info-puasa-sunnah__label {
-    font-size: 0.85rem;
+    font-size: 1.5rem;
     color: var(--color-text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 0.75rem;
-    font-weight: 600;
+    letter-spacing: 4px;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
     position: relative;
     z-index: 1;
+    opacity: 0.8;
 }
 
 .info-puasa-sunnah__name {
-    font-size: 1.75rem;
-    font-weight: 700;
+    font-size: 2.25rem;
+    /* Increased size */
+    font-weight: 800;
     color: var(--color-text);
     margin-bottom: 1rem;
-    line-height: 1.2;
-    background: linear-gradient(to right, var(--color-text) 0%, var(--color-primary-light) 100%);
+    line-height: 1.1;
+    letter-spacing: 1px;
+    background: linear-gradient(to right, #fff 20%, var(--color-primary-light) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
     z-index: 1;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .info-puasa-sunnah__countdown {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
     position: relative;
     z-index: 1;
+    width: 100%;
+    /* Ensure centering */
+    display: flex;
+    justify-content: center;
 }
 
 .info-puasa-sunnah__highlight {
-    font-size: 2.5rem;
-    font-weight: 800;
+    font-size: 3.5rem;
+    /* Large impact */
+    font-weight: 900;
     color: var(--color-accent);
-    text-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.3);
+    text-shadow: 0 0 30px rgba(var(--color-accent-rgb), 0.4);
+    line-height: 1;
 
     /* Elegant underline effect */
-    background-image: linear-gradient(to right, rgba(var(--color-accent-rgb), 0), rgba(var(--color-accent-rgb), 0.5), rgba(var(--color-accent-rgb), 0));
-    background-size: 100% 2px;
+    background-image: linear-gradient(to right, transparent, rgba(var(--color-accent-rgb), 0.8), transparent);
+    background-size: 100% 3px;
     background-position: bottom;
     background-repeat: no-repeat;
-    padding-bottom: 4px;
+    padding-bottom: 8px;
 }
 
 .info-puasa-sunnah__date {
     font-size: 1.1rem;
-    font-family: 'Amiri', serif;
-    color: var(--color-text-secondary);
-    background: rgba(0, 0, 0, 0.2);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    /* font-family: 'Amiri', serif; */
+    /* Keep serif for Hijri date feel */
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
     z-index: 1;
+    letter-spacing: 1px;
+    width: 80%;
+    /* Fills 80% as requested? or nice visual balance */
+    max-width: 400px;
 }
 
 /* Prayer Section (Row 3) */
@@ -279,7 +295,7 @@
 
 /* Legacy styles for vertical layouts */
 .dashboard__prayer-aside {
-    width: 20vw;
+    width: 30vw;
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease;
@@ -299,6 +315,40 @@
 
 .dashboard--prayer-vertical-right {
     flex-direction: row-reverse;
+}
+
+/* Specific Grid for Vertical Layouts */
+.dashboard--prayer-vertical-left .dashboard__main {
+    grid-template-columns: 400px 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+.dashboard--prayer-vertical-right .dashboard__main {
+    grid-template-columns: 1fr 400px;
+    grid-template-rows: 1fr 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+.dashboard--prayer-vertical-left .dashboard__clock-section,
+.dashboard--prayer-vertical-right .dashboard__clock-section {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.dashboard--prayer-vertical-left .dashboard__countdown-section,
+.dashboard--prayer-vertical-right .dashboard__countdown-section {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.dashboard--prayer-vertical-left .dashboard__media-section,
+.dashboard--prayer-vertical-right .dashboard__media-section {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    height: 100%;
 }
 
 /* Running Text - Always at bottom */

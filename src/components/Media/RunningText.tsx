@@ -3,6 +3,7 @@
 import Marquee from 'react-fast-marquee';
 import { useSettings } from '../../hooks/useSettings';
 import './Media.css';
+import { EyeIcon } from 'lucide-react';
 
 interface RunningTextProps {
     texts?: string[];
@@ -35,11 +36,13 @@ export function RunningText({ texts, speed, className = '' }: RunningTextProps) 
             >
                 <span className="running-text__content">
                     {combinedText}
-                    <span className="running-text__spacer">   •   </span>
+                    <span className="running-text__spacer twxt-3xl ">
+                        == <EyeIcon /> ==
+                    </span>
                 </span>
             </Marquee>
         </div>
     );
 }
 
-export default RunningText;
+export default RunningText

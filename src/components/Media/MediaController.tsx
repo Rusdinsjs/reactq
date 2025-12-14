@@ -1,7 +1,7 @@
 // Media Controller Component
 
 import { useState } from 'react';
-import { ImageCarousel } from './ImageCarousel';
+import { Slideshow } from '../Slideshow/Slideshow';
 import { usePrayerFlow } from '../../hooks/usePrayerFlow';
 import './Media.css';
 
@@ -26,11 +26,7 @@ export function MediaController({ className = '' }: MediaControllerProps) {
                 </div>
             )}
 
-            <ImageCarousel
-                autoPlay={!isInPrayerFlow}
-                showIndicators={true}
-                showNavigation={false}
-            />
+            <Slideshow />
         </div>
     );
 }

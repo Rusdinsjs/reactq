@@ -123,8 +123,68 @@ export async function openImageFileDialog(title: string = 'Pilih Logo Masjid'): 
     try {
         return await callCommand<string | null>('open_image_file_dialog', { title });
     } catch (error) {
-        console.warn('openImageFileDialog failed:', error);
-        return null;
+        console.warn('openImageFileDialog failed, falling back to browser input:', error);
+        // Fallback to browser input
+        return new Promise((resolve) => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = (e) => {
+                const file = (e.target as HTMLInputElement).files?.[0];
+                if (file) {
+                    resolve(URL.createObjectURL(file));
+                } else {
+                    resolve(null);
+                }
+            };
+            input.click();
+        });
+    }
+}
+
+/**
+ * Open file dialog to select video file
+ */
+export async function openVideoFileDialog(title: string = 'Pilih Video'): Promise<string | null> {
+    if (!isTauriAvailable()) {
+        // Fallback: use browser file input
+        return new Promise((resolve) => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'video/*';
+            input.onchange = (e) => {
+                const file = (e.target as HTMLInputElement).files?.[0];
+                if (file) {
+                    // Return object URL for browser
+                    resolve(URL.createObjectURL(file));
+                } else {
+                    resolve(null);
+                }
+            };
+            input.click();
+        });
+    }
+
+    try {
+        // Optimistically try a video dialog command
+        return await callCommand<string | null>('open_video_file_dialog', { title });
+    } catch (error) {
+        console.warn('openVideoFileDialog failed, falling back to browser input:', error);
+        // Fallback to browser input
+        return new Promise((resolve) => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'video/*';
+            input.onchange = (e) => {
+                const file = (e.target as HTMLInputElement).files?.[0];
+                if (file) {
+                    resolve(URL.createObjectURL(file));
+                } else {
+                    resolve(null);
+                }
+            };
+            input.click();
+        });
     }
 }
 
