@@ -32,25 +32,19 @@ function App() {
     return <PrayerFlowContainer />;
   }
 
-  // Render current screen
-  const renderScreen = () => {
-    switch (currentScreen) {
-      case 'splash':
-        return <SplashScreen />;
-      case 'dashboard':
-        return <Dashboard />;
-      case 'settings':
-        return <Settings />;
-      case 'screensaver':
-        return <Screensaver />;
-      default:
-        return <Dashboard />;
-    }
-  };
+  // Screensaver takes over entire screen
+  if (currentScreen === 'screensaver') {
+    return <Screensaver />;
+  }
 
+  // Dashboard is always rendered, Settings appears as modal overlay on top
   return (
     <div className={`app ${isTransitioning ? 'app--transitioning' : ''}`}>
-      {renderScreen()}
+      {/* Dashboard is always visible */}
+      <Dashboard />
+
+      {/* Settings Modal Overlay - rendered on top of Dashboard */}
+      {currentScreen === 'settings' && <Settings />}
     </div>
   );
 }

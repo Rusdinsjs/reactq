@@ -30,27 +30,31 @@ fn get_audio_directory(app: tauri::AppHandle) -> Result<String, String> {
         .ok_or_else(|| "Invalid path encoding".to_string())
 }
 
-/// Copy audio file to AppData/Audio directory
+/// Copy audio file to destination directory (or AppData/Audio if not specified)
 #[tauri::command]
 fn copy_audio_file(
     app: tauri::AppHandle,
     source_path: String,
     file_name: String,
+    destination_dir: Option<String>,
 ) -> Result<String, String> {
-    let app_data_dir = app
-        .path()
-        .app_data_dir()
-        .map_err(|e| format!("Failed to get app data dir: {}", e))?;
-
-    let audio_dir = app_data_dir.join("Audio");
+    let dest_dir_path = if let Some(dir) = destination_dir {
+        std::path::PathBuf::from(dir)
+    } else {
+        let app_data_dir = app
+            .path()
+            .app_data_dir()
+            .map_err(|e| format!("Failed to get app data dir: {}", e))?;
+        app_data_dir.join("Audio")
+    };
 
     // Create directory if it doesn't exist
-    if !audio_dir.exists() {
-        fs::create_dir_all(&audio_dir)
+    if !dest_dir_path.exists() {
+        fs::create_dir_all(&dest_dir_path)
             .map_err(|e| format!("Failed to create audio directory: {}", e))?;
     }
 
-    let dest_path = audio_dir.join(&file_name);
+    let dest_path = dest_dir_path.join(&file_name);
 
     // Copy file
     fs::copy(&source_path, &dest_path).map_err(|e| format!("Failed to copy file: {}", e))?;
@@ -79,6 +83,19 @@ async fn open_audio_file_dialog(
     Ok(file_path.map(|p| p.to_string()))
 }
 
+/// Open folder dialog and return selected directory path
+#[tauri::command]
+async fn open_folder_dialog(
+    app: tauri::AppHandle,
+    title: String,
+) -> Result<Option<String>, String> {
+    use tauri_plugin_dialog::DialogExt;
+
+    let folder_path = app.dialog().file().set_title(&title).blocking_pick_folder();
+
+    Ok(folder_path.map(|p| p.to_string()))
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -88,7 +105,8 @@ pub fn run() {
             greet,
             get_audio_directory,
             copy_audio_file,
-            open_audio_file_dialog
+            open_audio_file_dialog,
+            open_folder_dialog
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
