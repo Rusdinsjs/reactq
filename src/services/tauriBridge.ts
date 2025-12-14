@@ -116,9 +116,9 @@ export async function openFolderDialog(title: string = 'Pilih Folder'): Promise<
 }
 
 /**
- * Copy audio file to destination directory
+ * Copy audio file to AppData/Audio directory
  */
-export async function copyAudioFile(sourcePath: string, fileName: string, destinationDir?: string): Promise<string> {
+export async function copyAudioFile(sourcePath: string, fileName: string): Promise<string> {
     if (!isTauriAvailable()) {
         // In browser, just return the source path
         return sourcePath;
@@ -127,8 +127,7 @@ export async function copyAudioFile(sourcePath: string, fileName: string, destin
     try {
         return await callCommand<string>('copy_audio_file', {
             sourcePath,
-            fileName,
-            destinationDir,
+            fileName
         });
     } catch (error) {
         console.warn('copyAudioFile failed:', error);

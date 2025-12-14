@@ -1,4 +1,4 @@
-// Prayer Times Display Component with CSS Animation Carousel
+// Prayer Times Display Component with Carousel/Slide Animation
 
 import { usePrayerTimes } from '../../hooks/usePrayerTimes';
 import { formatTimeShort } from '../../utils/formatters';
@@ -10,10 +10,10 @@ export type PrayerLayoutOrientation = 'horizontal' | 'vertical';
 interface PrayerTimesDisplayProps {
     className?: string;
     layout?: PrayerLayoutOrientation;
-    position?: PrayerLayoutPosition;
+    position?: PrayerLayoutPosition; // left/right for vertical, top/bottom for horizontal
     showActiveIndicator?: boolean;
-    carousel?: boolean;
-    carouselSpeed?: number; // 0-100 range
+    carousel?: boolean; // Enable auto-scrolling carousel
+    carouselSpeed?: number; // Speed in seconds per item
 }
 
 export function PrayerTimesDisplay({
@@ -22,13 +22,10 @@ export function PrayerTimesDisplay({
     position = 'bottom',
     showActiveIndicator = true,
     carousel = true,
-    carouselSpeed = 50,
+    carouselSpeed = 3,
 }: PrayerTimesDisplayProps) {
     const { getPrayerList, isLoading } = usePrayerTimes();
     const prayers = getPrayerList();
-
-    // Convert 0-100 to animation duration (100 = fast/10s, 0 = slow/60s)
-    const animationDuration = Math.max(10, Math.round(60 - (carouselSpeed / 100) * 50));
 
     if (isLoading) {
         return (
@@ -38,22 +35,21 @@ export function PrayerTimesDisplay({
         );
     }
 
-    // Duplicate items for seamless loop
-    const displayItems = carousel ? [...prayers, ...prayers] : prayers;
+    // For carousel, duplicate items for seamless loop
+    const carouselItems = carousel ? [...prayers, ...prayers] : prayers;
+    const animationDuration = prayers.length * carouselSpeed;
 
     const layoutClass = `prayer-times--${layout}`;
     const positionClass = `prayer-times--${position}`;
     const carouselClass = carousel ? 'prayer-times--carousel' : '';
 
     return (
-        <div className={`prayer-times ${layoutClass} ${positionClass} ${carouselClass} ${className}`}>
-            <div
-                className="prayer-times__track"
-                style={{
-                    animationDuration: `${animationDuration}s`,
-                } as React.CSSProperties}
-            >
-                {displayItems.map((prayer, index) => (
+        <div
+            className={`prayer-times ${layoutClass} ${positionClass} ${carouselClass} ${className}`}
+            style={carousel ? { '--carousel-duration': `${animationDuration}s` } as React.CSSProperties : undefined}
+        >
+            <div className="prayer-times__track">
+                {carouselItems.map((prayer, index) => (
                     <div
                         key={`${prayer.name}-${index}`}
                         className={`prayer-times__item ${prayer.isActive && showActiveIndicator ? 'prayer-times__item--active' : ''

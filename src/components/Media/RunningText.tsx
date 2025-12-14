@@ -1,6 +1,6 @@
-// Running Text Component - Using react-fast-marquee
+// Running Text Component - Marquee style
 
-import Marquee from 'react-fast-marquee';
+import { useRef, useEffect, useState } from 'react';
 import { useSettings } from '../../hooks/useSettings';
 import './Media.css';
 
@@ -12,32 +12,42 @@ interface RunningTextProps {
 
 export function RunningText({ texts, speed, className = '' }: RunningTextProps) {
     const { runningText: settings } = useSettings();
+    const containerRef = useRef<HTMLDivElement>(null);
+    const textRef = useRef<HTMLDivElement>(null);
+    const [animationDuration, setAnimationDuration] = useState(20);
 
     const displayTexts = texts ?? settings.texts;
-    // Convert 0-100 range to actual speed (10-200 pixels per second)
-    const displaySpeed = speed ?? Math.max(10, Math.round((settings.speed / 100) * 200));
+    const displaySpeed = speed ?? settings.speed;
+
+    const combinedText = displayTexts.join('   •   ');
+
+    useEffect(() => {
+        if (!textRef.current || !containerRef.current) return;
+
+        const textWidth = textRef.current.scrollWidth;
+        const containerWidth = containerRef.current.offsetWidth;
+        const totalDistance = textWidth + containerWidth;
+
+        // Speed is pixels per second
+        const duration = totalDistance / displaySpeed;
+        setAnimationDuration(duration);
+    }, [combinedText, displaySpeed]);
 
     if (!settings.enabled || displayTexts.length === 0) {
         return null;
     }
 
-    const combinedText = displayTexts.join('   •   ');
-
     return (
-        <div className={`running-text ${className}`}>
-            <Marquee
-                speed={displaySpeed}
-                gradient={true}
-                gradientColor="var(--color-primary)"
-                gradientWidth={50}
-                pauseOnHover={true}
-                className="running-text__marquee"
+        <div ref={containerRef} className={`running-text ${className}`}>
+            <div
+                ref={textRef}
+                className="running-text__content"
+                style={{ animationDuration: `${animationDuration}s` }}
             >
-                <span className="running-text__content">
-                    {combinedText}
-                    <span className="running-text__spacer">   •   </span>
-                </span>
-            </Marquee>
+                <span>{combinedText}</span>
+                <span className="running-text__spacer">{'   •   '}</span>
+                <span>{combinedText}</span>
+            </div>
         </div>
     );
 }

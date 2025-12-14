@@ -40,8 +40,6 @@ export function Settings() {
         setCorrections,
         display,
         setDisplaySettings,
-        runningText,
-        setRunningTextSettings,
     } = useSettings();
 
     const handlePrayerAudioChange = (prayer: MainPrayerName, settings: Partial<PrayerAudioSettings>) => {
@@ -176,45 +174,15 @@ export function Settings() {
                             </select>
                         </div>
                         <div className="settings-group">
-                            <label className="settings-label">
-                                Kecepatan Carousel: {display.prayerTimesCarouselSpeed}%
-                            </label>
+                            <label className="settings-label">Kecepatan Carousel (detik per item)</label>
                             <input
-                                type="range"
-                                min="0"
-                                max="100"
-                                className="settings-range"
+                                type="number"
+                                min="1"
+                                max="10"
+                                className="settings-input"
                                 value={display.prayerTimesCarouselSpeed}
-                                onChange={(e) => setDisplaySettings({ prayerTimesCarouselSpeed: parseInt(e.target.value) })}
+                                onChange={(e) => setDisplaySettings({ prayerTimesCarouselSpeed: parseInt(e.target.value) || 4 })}
                             />
-                            <div className="settings-range-labels">
-                                <span>Lambat</span>
-                                <span>Cepat</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Running Text Settings */}
-                <section className="settings-section">
-                    <h2 className="settings-section__title">📜 Running Text</h2>
-                    <div className="settings-row">
-                        <div className="settings-group">
-                            <label className="settings-label">
-                                Kecepatan: {runningText.speed}%
-                            </label>
-                            <input
-                                type="range"
-                                min="0"
-                                max="100"
-                                className="settings-range"
-                                value={runningText.speed}
-                                onChange={(e) => setRunningTextSettings({ speed: parseInt(e.target.value) })}
-                            />
-                            <div className="settings-range-labels">
-                                <span>Lambat</span>
-                                <span>Cepat</span>
-                            </div>
                         </div>
                     </div>
                 </section>
@@ -308,7 +276,6 @@ export function Settings() {
                                 iqamah: audio.globalIqamahWaitDuration,
                                 prayer: audio.globalPrayerDuration,
                             }}
-                            audioDirectory={audio.audioDirectory}
                             onSettingsChange={(settings) => handlePrayerAudioChange(prayer, settings)}
                         />
                     ))}

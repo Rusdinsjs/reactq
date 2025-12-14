@@ -1,0 +1,120 @@
+/* Layout Styles */
+
+/* Main Layout */
+.main-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--color-background);
+}
+
+.main-layout__header {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.5rem 1rem;
+}
+
+.main-layout__content {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.main-layout__footer {
+    margin-top: auto;
+}
+
+/* Prayer Layout */
+.prayer-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--color-background);
+}
+
+.prayer-layout__content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Settings Layout */
+.settings-layout {
+    display: flex;
+    min-height: 100vh;
+    background: var(--color-background);
+}
+
+.settings-layout__sidebar {
+    width: 280px;
+    background: var(--color-surface);
+    border-right: 1px solid var(--color-border);
+    padding: 1.5rem;
+}
+
+.settings-layout__content {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+.settings-layout__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.settings-layout__title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.settings-layout__back-btn {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+.settings-layout__back-btn:hover {
+    background: var(--color-primary-dark);
+}
+
+/* Fullscreen Layout */
+.fullscreen-layout {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+}
+
+.fullscreen-layout__content {
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .settings-layout {
+        flex-direction: column;
+    }
+
+    .settings-layout__sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .main-layout__content {
+        padding: 0.5rem;
+    }
+}

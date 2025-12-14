@@ -11,7 +11,6 @@ interface AudioFilePickerProps {
     audioType: 'tartil' | 'tarhim' | 'adhan';
     currentFile: string;
     currentDuration: number;
-    audioDirectory?: string;
     onFileChange: (file: string, duration: number) => void;
     className?: string;
 }
@@ -27,7 +26,6 @@ export function AudioFilePicker({
     audioType,
     currentFile,
     currentDuration,
-    audioDirectory,
     onFileChange,
     className = '',
 }: AudioFilePickerProps) {
@@ -49,8 +47,8 @@ export function AudioFilePicker({
                 const originalName = sourcePath.split(/[/\\]/).pop() || 'audio.mp3';
                 const uniqueName = `${prayer}_${audioType}_${originalName}`;
 
-                // Copy file to audio directory (external or internal)
-                const destPath = await copyAudioFile(sourcePath, uniqueName, audioDirectory);
+                // Copy file to AppData/Audio
+                const destPath = await copyAudioFile(sourcePath, uniqueName);
 
                 // Get audio duration
                 const duration = await getAudioDuration(destPath);
@@ -126,7 +124,6 @@ interface PrayerAudioSettingsProps {
     prayer: MainPrayerName;
     settings: PrayerAudioSettings;
     globalDefaults: { tartil: number; iqamah: number; prayer: number };
-    audioDirectory?: string;
     onSettingsChange: (settings: Partial<PrayerAudioSettings>) => void;
 }
 
@@ -134,7 +131,6 @@ export function PrayerAudioSettingsEditor({
     prayer,
     settings,
     globalDefaults,
-    audioDirectory,
     onSettingsChange,
 }: PrayerAudioSettingsProps) {
     const prayerLabels: Record<MainPrayerName, string> = {
@@ -158,7 +154,6 @@ export function PrayerAudioSettingsEditor({
                     audioType="tartil"
                     currentFile={settings.tartilFile}
                     currentDuration={0}
-                    audioDirectory={audioDirectory}
                     onFileChange={(file) => onSettingsChange({ tartilFile: file })}
                 />
 
@@ -167,7 +162,6 @@ export function PrayerAudioSettingsEditor({
                     audioType="tarhim"
                     currentFile={settings.tarhimFile}
                     currentDuration={0}
-                    audioDirectory={audioDirectory}
                     onFileChange={(file) => onSettingsChange({ tarhimFile: file })}
                 />
 
@@ -176,7 +170,6 @@ export function PrayerAudioSettingsEditor({
                     audioType="adhan"
                     currentFile={settings.adhanFile}
                     currentDuration={0}
-                    audioDirectory={audioDirectory}
                     onFileChange={(file) => onSettingsChange({ adhanFile: file })}
                 />
             </div>

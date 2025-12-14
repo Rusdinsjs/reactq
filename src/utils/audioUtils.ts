@@ -6,20 +6,7 @@ import { AUDIO_PATHS } from './constants';
 /**
  * Get audio file path based on type and filename
  */
-import { convertFileSrc } from '@tauri-apps/api/core';
-
-/**
- * Get audio file path based on type and filename
- */
 export function getAudioPath(type: AudioType, filename: string): string {
-    if (!filename) return '';
-
-    // Check if filename is an absolute path (external file)
-    if (filename.startsWith('/') || filename.match(/^[a-zA-Z]:\\/)) {
-        return convertFileSrc(filename);
-    }
-
-    // Default to assets folder
     const basePath = AUDIO_PATHS[type];
     return `${basePath}${filename}`;
 }
