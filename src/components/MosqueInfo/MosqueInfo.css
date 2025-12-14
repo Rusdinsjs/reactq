@@ -12,6 +12,7 @@
     border-radius: 50%;
     background: white;
     padding: 0.5rem;
+    margin-left: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,10 +36,11 @@
     color: var(--color-text);
     margin-bottom: 0.25rem;
     line-height: 1.2;
+    text-transform: uppercase;
 }
 
 .mosque-header__address {
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: var(--color-text-secondary);
 }
 

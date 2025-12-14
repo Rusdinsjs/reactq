@@ -47,11 +47,13 @@
     justify-content: center;
 }
 
-/* Vertical Prayer Times Aside - 20% width */
+/* Vertical Prayer Times Aside - 1.12x of previous 20vw = 22.4vw */
 .dashboard__prayer-aside {
-    width: 20vw;
-    min-width: 220px;
-    max-width: 320px;
+    width: 22.4vw;
+    min-width: 246px;
+    /* 1.12x of 220 */
+    max-width: 358px;
+    /* 1.12x of 320 */
     height: 100%;
     flex-shrink: 0;
 }
@@ -111,11 +113,11 @@
 /* Content Grid (Row 2) */
 .dashboard__main-grid {
     display: grid;
-    grid-template-columns: 1fr 500px;
+    grid-template-columns: 1fr 450px;
     /* flex: 1; Removed to allow custom height */
-    height: 85%;
+    height: 100%;
     /* Reduced to 85% as requested */
-    min-height: 55vh;
+    min-height: 61vh;
     margin: auto 0;
     /* Center vertically */
 }
@@ -227,6 +229,7 @@
     margin-bottom: 1rem;
     line-height: 1.2;
     background: linear-gradient(to right, var(--color-text) 0%, var(--color-primary-light) 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
@@ -268,7 +271,6 @@
 /* Prayer Section (Row 3) */
 .dashboard__prayer-section--horizontal {
     height: 210px;
-    /* Increased 1.5x from 140px */
     width: 100%;
     background: var(--color-surface);
     /* border-radius: var(--radius-lg); */

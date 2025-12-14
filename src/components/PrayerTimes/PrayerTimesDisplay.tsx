@@ -1,7 +1,14 @@
-// Prayer Times Display Component with CSS Animation Carousel
-
 import { usePrayerTimes } from '../../hooks/usePrayerTimes';
 import { formatTimeShort } from '../../utils/formatters';
+import {
+    Moon,
+    CloudSun,
+    Sunrise,
+    Sun,
+    Sunset,
+    MoonStar,
+    Coffee
+} from 'lucide-react';
 import './PrayerTimes.css';
 
 export type PrayerLayoutPosition = 'left' | 'right' | 'top' | 'bottom';
@@ -15,6 +22,29 @@ interface PrayerTimesDisplayProps {
     carousel?: boolean;
     carouselSpeed?: number; // 0-100 range
 }
+
+const getIconForPrayer = (prayerName: string) => {
+    switch (prayerName.toLowerCase()) {
+        case 'imsak':
+            return <Coffee size={28} strokeWidth={1.5} />;
+        case 'fajr':
+            return <CloudSun size={28} strokeWidth={1.5} />;
+        case 'sunrise':
+            return <Sunrise size={28} strokeWidth={1.5} />;
+        case 'dhuha':
+            return <Sun size={28} strokeWidth={1.5} />;
+        case 'dhuhr':
+            return <Sun size={28} strokeWidth={2} />; // Bolder
+        case 'asr':
+            return <CloudSun size={28} strokeWidth={1.5} />;
+        case 'maghrib':
+            return <Sunset size={28} strokeWidth={1.5} />;
+        case 'isha':
+            return <MoonStar size={28} strokeWidth={1.5} />;
+        default:
+            return <Moon size={28} strokeWidth={1.5} />;
+    }
+};
 
 export function PrayerTimesDisplay({
     className = '',
@@ -59,18 +89,19 @@ export function PrayerTimesDisplay({
                         className={`prayer-times__item ${prayer.isActive && showActiveIndicator ? 'prayer-times__item--active' : ''
                             } ${prayer.isNext ? 'prayer-times__item--next' : ''}`}
                     >
-                        <div className="prayer-times__icon">🕌</div>
-                        <div className="prayer-times__content">
+                        <div className="prayer-times__header-row">
+                            <div className="prayer-times__icon">
+                                {getIconForPrayer(prayer.name)}
+                            </div>
                             <div className="prayer-times__name">
                                 <span className="prayer-times__name-id">{prayer.displayName}</span>
-                                <span className="prayer-times__name-ar">{prayer.displayNameAr}</span>
-                            </div>
-                            <div className="prayer-times__time">
-                                {formatTimeShort(prayer.time, true)}
                             </div>
                         </div>
+                        <div className="prayer-times__time">
+                            {formatTimeShort(prayer.time, true)}
+                        </div>
                         {prayer.isNext && (
-                            <div className="prayer-times__next-badge">Berikutnya</div>
+                            <div className="prayer-times__next-badge">Next</div>
                         )}
                     </div>
                 ))}

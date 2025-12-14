@@ -51,6 +51,7 @@
 /* User request: Increase item width by 1.25x (from 300px to 375px) */
 .prayer-times--horizontal .prayer-times__item {
     min-width: 375px;
+    min-height: 100%;
     justify-content: space-between;
 }
 
@@ -104,16 +105,73 @@
 }
 
 /* Prayer Item Styles */
+/* Prayer Item Styles */
 .prayer-times__item {
     display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 0.25rem 0.25rem;
+    flex-direction: column;
+    /* Stack rows */
+    justify-content: center;
+    padding: 0.5rem 1rem;
     border-radius: var(--radius-md);
     background: var(--color-background);
     transition: all 0.3s ease;
     flex-shrink: 0;
     position: relative;
+    height: 100%;
+}
+
+.prayer-times__header-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 45%;
+    /* Approx row 1 height */
+    margin-bottom: 0.5rem;
+}
+
+.prayer-times__icon {
+    width: 25%;
+    /* 25% area as requested */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+}
+
+.prayer-times__icon svg {
+    width: 100%;
+    height: auto;
+    max-height: 4rem;
+}
+
+.prayer-times__name {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+}
+
+.prayer-times__name-id {
+    font-size: 2.5rem;
+    /* Massive font filling area */
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.prayer-times__time {
+    width: 100%;
+    height: 55%;
+    /* Row 2 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    /* Huge font 80% area feel */
+    font-weight: 800;
+    font-family: 'Roboto Mono', monospace;
+    line-height: 1;
+    color: var(--color-text);
 }
 
 .prayer-times__item--active {
@@ -122,72 +180,47 @@
     box-shadow: 0 4px 15px rgba(var(--color-primary-rgb, 99, 102, 241), 0.4);
 }
 
+.prayer-times__item--active .prayer-times__icon {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.prayer-times__item--active .prayer-times__time {
+    color: white;
+}
+
 .prayer-times__item--next {
     border: 2px solid var(--color-accent);
 }
 
-.prayer-times__icon {
-    font-size: 1.5rem;
-    flex-shrink: 0;
-}
-
-.prayer-times__content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.prayer-times__name {
-    display: flex;
-    flex-direction: column;
-}
-
-.prayer-times__name-id {
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.prayer-times__name-ar {
-    font-size: 0.8rem;
-    font-family: 'Amiri', serif;
-    color: var(--color-text-secondary);
-    direction: rtl;
-}
-
-.prayer-times__item--active .prayer-times__name-ar {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.prayer-times__time {
-    font-size: 1.4rem;
-    font-weight: 700;
-    font-family: 'Roboto Mono', monospace;
-}
-
-/* Increase font size for wider items in horizontal mode */
-.prayer-times--horizontal .prayer-times__time {
-    font-size: 1.8rem;
-}
-
+/* Horizontal specific adjustments */
 .prayer-times--horizontal .prayer-times__name-id {
-    font-size: 1.1rem;
+    font-size: 3vw;
+    /* Responsive huge */
 }
 
+.prayer-times--horizontal .prayer-times__time {
+    font-size: 5vw;
+    color: var(--color-accent);
+    /* Responsive huge */
+}
+
+/* Badge positioning */
+/* Badge positioning */
 .prayer-times__next-badge {
     position: absolute;
-    top: -0.5rem;
-    right: -0.5rem;
+    top: 0.6rem;
+    right: 0.6rem;
     background: var(--color-accent);
     color: white;
-    font-size: 0.65rem;
-    padding: 0.2rem 0.5rem;
+    font-size: 1rem;
+    /* approx 1.2x of 0.8rem */
+    padding: 0.4rem 0.8rem;
+    /* approx 1.2x padding */
     border-radius: var(--radius-sm);
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     animation: pulse 2s ease-in-out infinite;
+    z-index: 10;
 }
 
 /* Countdown Timer Styles */
