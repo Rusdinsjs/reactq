@@ -20,14 +20,13 @@ export function PrayerPeriodScreen({ className = '' }: PrayerPeriodScreenProps) 
             <div className="prayer-flow-screen__content">
                 <div className="prayer-period-screen__title">Waktu Sholat</div>
                 <div className="prayer-period-screen__prayer-name">{names.id}</div>
-                <div className="prayer-period-screen__arabic">{names.ar}</div>
-
-                <div className="prayer-period-screen__message">
-                    Luruskan dan rapatkan shaf. Matikan ponsel Anda.
-                </div>
 
                 <div className="prayer-period-screen__countdown">
                     {getFormattedRemainingTime()}
+                </div>
+
+                <div className="prayer-period-screen__message">
+                    Luruskan dan rapatkan shaf. Matikan ponsel Anda.
                 </div>
             </div>
         </div>

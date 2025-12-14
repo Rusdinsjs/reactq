@@ -98,6 +98,37 @@ export async function openAudioFileDialog(title: string = 'Pilih File Audio'): P
 }
 
 /**
+ * Open file dialog to select image file
+ */
+export async function openImageFileDialog(title: string = 'Pilih Logo Masjid'): Promise<string | null> {
+    if (!isTauriAvailable()) {
+        // Fallback: use browser file input
+        return new Promise((resolve) => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = (e) => {
+                const file = (e.target as HTMLInputElement).files?.[0];
+                if (file) {
+                    // Return object URL for browser
+                    resolve(URL.createObjectURL(file));
+                } else {
+                    resolve(null);
+                }
+            };
+            input.click();
+        });
+    }
+
+    try {
+        return await callCommand<string | null>('open_image_file_dialog', { title });
+    } catch (error) {
+        console.warn('openImageFileDialog failed:', error);
+        return null;
+    }
+}
+
+/**
  * Open folder dialog to select directory
  */
 export async function openFolderDialog(title: string = 'Pilih Folder'): Promise<string | null> {

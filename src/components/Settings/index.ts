@@ -1,3 +1,5 @@
 // Settings Components Index
 export { AudioFilePicker, PrayerAudioSettingsEditor } from './AudioFilePicker';
-export { AudioDirectoryPicker } from './AudioDirectoryPicker';
+export * from './AudioDirectoryPicker';
+export * from './AudioFilePicker';
+export * from './LogoPicker';

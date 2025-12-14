@@ -2,7 +2,7 @@
 import { SettingsLayout } from '../layouts';
 import { useSettings } from '../hooks/useSettings';
 import { CALCULATION_METHODS } from '../utils/constants';
-import { AudioDirectoryPicker, PrayerAudioSettingsEditor } from '../components/Settings';
+import { AudioDirectoryPicker, PrayerAudioSettingsEditor, LogoPicker } from '../components/Settings';
 import type { CalculationMethod, AsrJuristic, MainPrayerName } from '../types/prayer.types';
 import type { ThemeName, PrayerAudioSettings, PrayerTimesLayoutOption } from '../types/settings.types';
 import '../components/Settings/Settings.css';
@@ -318,6 +318,10 @@ export function Settings() {
                 <section className="settings-section">
                     <h2 className="settings-section__title">🏛️ Informasi Masjid</h2>
                     <div className="settings-row">
+                        <LogoPicker
+                            currentLogo={mosque.logoPath}
+                            onLogoChange={(path) => setMosqueInfo({ logoPath: path })}
+                        />
                         <div className="settings-group">
                             <label className="settings-label">Nama Masjid</label>
                             <input

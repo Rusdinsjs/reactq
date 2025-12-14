@@ -12,9 +12,11 @@
   "app": {
     "windows": [
       {
-        "title": "jws-reactq",
-        "width": 800,
-        "height": 600
+        "width": 1920,
+        "height": 1080,
+        "resizable": true,
+        "fullscreen": true,
+        "title": "jws-reactq"
       }
     ],
     "security": {

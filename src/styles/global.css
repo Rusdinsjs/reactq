@@ -1,0 +1,105 @@
+/* Global Variables & Resets */
+:root {
+    /* Colors */
+    --color-primary: #6366f1;
+    --color-primary-dark: #4f46e5;
+    --color-accent: #f59e0b;
+    --color-background: #0f172a;
+    --color-surface: #1e293b;
+    --color-text: #f8fafc;
+    --color-text-secondary: #94a3b8;
+    --color-border: #334155;
+    --color-error: #ef4444;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+
+    /* Radii */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+
+    /* Fonts */
+    --font-main: 'Inter', system-ui, sans-serif;
+    --font-mono: 'Roboto Mono', monospace;
+    --font-arabic: 'Amiri', serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+
+    /* TV Aspect Ratio Fix (16:9) */
+    /* This ensures the app maintains TV proportions even on different screens if needed */
+    aspect-ratio: 16/9;
+    max-height: 100vh;
+    margin: 0 auto;
+    position: relative;
+    background: var(--color-background);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Allow flexible aspect ratio on smaller screens (non-TV) */
+@media (max-width: 1024px) {
+    #root {
+        aspect-ratio: auto;
+        height: 100vh;
+        width: 100vw;
+        max-height: none;
+    }
+
+    body {
+        overflow-y: auto;
+        /* Allow scrolling on mobile */
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-secondary);
+}
+
+/* Utilities */
+.hidden {
+    display: none !important;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

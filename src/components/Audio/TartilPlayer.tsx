@@ -16,6 +16,19 @@ export function TartilPlayer({ className = '' }: TartilPlayerProps) {
             <div className="tartil-player__title">Tartil Al-Qur'an</div>
             <div className="tartil-player__subtitle">تلاوة القرآن الكريم</div>
 
+            {/* Row 3: Playback Icon */}
+            <div className="playback-icon">
+                <div className="playback-icon__circle"></div>
+                <div className="playback-icon__circle"></div>
+                <div className="playback-icon__wave">
+                    <div className="playback-icon__bar"></div>
+                    <div className="playback-icon__bar"></div>
+                    <div className="playback-icon__bar"></div>
+                    <div className="playback-icon__bar"></div>
+                    <div className="playback-icon__bar"></div>
+                </div>
+            </div>
+
             {isPlaying && currentTrack?.type === 'tartil' && (
                 <AudioVisualizer isPlaying={true} />
             )}

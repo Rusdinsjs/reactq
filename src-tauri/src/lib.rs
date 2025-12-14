@@ -96,6 +96,24 @@ async fn open_folder_dialog(
     Ok(folder_path.map(|p| p.to_string()))
 }
 
+/// Open file dialog and return selected image file path
+#[tauri::command]
+async fn open_image_file_dialog(
+    app: tauri::AppHandle,
+    title: String,
+) -> Result<Option<String>, String> {
+    use tauri_plugin_dialog::DialogExt;
+
+    let file_path = app
+        .dialog()
+        .file()
+        .set_title(&title)
+        .add_filter("Image Files", &["png", "jpg", "jpeg", "svg", "webp", "gif"])
+        .blocking_pick_file();
+
+    Ok(file_path.map(|p| p.to_string()))
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -106,7 +124,8 @@ pub fn run() {
             get_audio_directory,
             copy_audio_file,
             open_audio_file_dialog,
-            open_folder_dialog
+            open_folder_dialog,
+            open_image_file_dialog
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

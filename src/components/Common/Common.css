@@ -1,0 +1,129 @@
+/* Common Component Styles */
+
+/* Screen Transitions */
+.screen-transition-enter {
+    opacity: 0;
+}
+
+.screen-transition-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+}
+
+.screen-transition-exit {
+    opacity: 1;
+}
+
+.screen-transition-exit-active {
+    opacity: 0;
+    transition: opacity 300ms ease-in;
+}
+
+/* Prayer Notification Toast */
+.prayer-notification {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 2000;
+    border-left: 4px solid var(--color-accent);
+    max-width: 400px;
+}
+
+.prayer-notification__icon {
+    font-size: 1.5rem;
+}
+
+.prayer-notification__content {
+    display: flex;
+    flex-direction: column;
+}
+
+.prayer-notification__title {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.prayer-notification__message {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+/* Countdown Display */
+.countdown-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+}
+
+.countdown-display__label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.countdown-display__time {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--color-text);
+    /* Fallback */
+}
+
+.countdown-display__time--urgent {
+    color: var(--color-error);
+    animation: pulse 1s infinite;
+}
+
+.countdown-display__name {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+/* Emergency Overlay */
+.emergency-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(220, 38, 38, 0.95);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    animation: pulse 2s infinite;
+}
+
+.emergency-overlay__icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+}
+
+.emergency-overlay__title {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.emergency-overlay__message {
+    font-size: 1.5rem;
+    max-width: 800px;
+}

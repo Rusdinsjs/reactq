@@ -1,6 +1,7 @@
 // Mosque Header Component
 
 import { useSettings } from '../../hooks/useSettings';
+import { convertFileSrc } from '@tauri-apps/api/core';
 import './MosqueInfo.css';
 
 interface MosqueHeaderProps {
@@ -19,11 +20,17 @@ export function MosqueHeader({
     return (
         <div className={`mosque-header ${className}`}>
             {showLogo && (
-                <div className="mosque-header__logo">
+                <div className="mosque-header__logo-container">
                     {mosque.logoPath ? (
-                        <img src={mosque.logoPath} alt={mosque.name} />
+                        <img
+                            src={mosque.logoPath.startsWith('http') || mosque.logoPath.startsWith('blob:')
+                                ? mosque.logoPath
+                                : convertFileSrc(mosque.logoPath)}
+                            alt={mosque.name}
+                            className="mosque-header__logo"
+                        />
                     ) : (
-                        <div className="mosque-header__icon">🕌</div>
+                        <div className="mosque-header__icon" style={{ fontSize: '2.5rem' }}>🕌</div>
                     )}
                 </div>
             )}

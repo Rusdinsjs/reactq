@@ -56,41 +56,25 @@
     flex-shrink: 0;
 }
 
-/* Dashboard Layout Grid - TV 16:9 Optimized */
+/* Dashboard Layout Grid */
 .dashboard--prayer-horizontal {
-    display: grid;
-    /* 
-       Total Height = 100vh
-       - Row 1 (Header): 15vh
-       - Row 2 (Content): 65vh (Dominant)
-       - Row 3 (Prayer Times): 15vh
-       - Row 4 (Running Text): 5vh
-    */
-    grid-template-rows: 15vh 65vh 15vh 5vh;
-    grid-template-columns: 1fr;
-    height: 100vh;
-    overflow: hidden;
-    /* Prevent scrolling strictly */
-    gap: 0;
-    padding: 0 1rem;
-    /* Horizontal padding only */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 /* Custom Header Row (Row 1) */
 .dashboard__custom-header {
     display: grid;
     /* Proportional columns: Mosque Info (40%), Dates (25%), Clock (35%) */
-    grid-template-columns: 1.6fr 1fr 1.4fr;
+    grid-template-columns: 1.2fr 1.4fr 1.4fr;
     gap: 2rem;
     align-items: center;
-    padding: 0 2rem;
     background: var(--color-surface);
-    border-radius: var(--radius-lg);
+    /* border-radius: var(--radius-lg); */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Fill the grid cell minus gap */
-    height: calc(100% - 1rem);
-    margin-bottom: 0;
-    align-self: center;
+    height: 120px;
+    /* Fixed height for elegance */
 }
 
 .dashboard__header-col-1 {
@@ -108,7 +92,8 @@
     justify-content: center;
     gap: 0.5rem;
     padding: 0 2rem;
-    height: 70%;
+    height: 80%;
+    /* Don't touch top/bottom edges */
     border-left: 1px solid var(--color-border);
     border-right: 1px solid var(--color-border);
     text-align: center;
@@ -126,14 +111,13 @@
 /* Content Grid (Row 2) */
 .dashboard__main-grid {
     display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 1.5rem;
-    /* Fill the 65vh slot */
-    height: 100%;
-    min-height: 0;
-    margin-bottom: 0;
-    padding: 0.5rem 0;
-    /* Slight spacing */
+    grid-template-columns: 1fr 500px;
+    /* flex: 1; Removed to allow custom height */
+    height: 85%;
+    /* Reduced to 85% as requested */
+    min-height: 55vh;
+    margin: auto 0;
+    /* Center vertically */
 }
 
 .dashboard__visible-col-1 {
@@ -143,29 +127,152 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    border-radius: var(--radius-lg);
+    /* border-radius: var(--radius-lg); */
     background: black;
 }
 
+/* Visible Column 2 - Split Layout */
 .dashboard__visible-col-2 {
-    /* Countdown Timer */
+    display: grid;
+    grid-template-rows: 1.2fr 1.5fr;
+    /* Countdown gets slightly less space than info/audio */
+    gap: 1.25rem;
+    height: 100%;
+}
+
+.dashboard__col-2-row-1,
+.dashboard__col-2-row-2 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Row 1: Countdown - Transparent container to blend */
+.dashboard__col-2-row-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Row 2: Info/Audio - Container styles */
+.dashboard__col-2-row-2 {
+    border-radius: var(--radius-lg);
+    /* overflow: hidden is handled by children */
+}
+
+/* Info Puasa Sunnah - Modern & Elegant */
+.info-puasa-sunnah {
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
+    text-align: center;
+    width: 100%;
     height: 100%;
-    /* Fill height */
+
+    /* Modern Glassmorphism Background */
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative background elements */
+.info-puasa-sunnah::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle at top right, rgba(var(--color-primary-rgb), 0.15), transparent 70%);
+    pointer-events: none;
+}
+
+.info-puasa-sunnah::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at bottom left, rgba(var(--color-accent-rgb), 0.1), transparent 70%);
+    pointer-events: none;
+}
+
+.info-puasa-sunnah__label {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+}
+
+.info-puasa-sunnah__name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    background: linear-gradient(to right, var(--color-text) 0%, var(--color-primary-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    z-index: 1;
+}
+
+.info-puasa-sunnah__countdown {
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.info-puasa-sunnah__highlight {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    text-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.3);
+
+    /* Elegant underline effect */
+    background-image: linear-gradient(to right, rgba(var(--color-accent-rgb), 0), rgba(var(--color-accent-rgb), 0.5), rgba(var(--color-accent-rgb), 0));
+    background-size: 100% 2px;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    padding-bottom: 4px;
+}
+
+.info-puasa-sunnah__date {
+    font-size: 1.1rem;
+    font-family: 'Amiri', serif;
+    color: var(--color-text-secondary);
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 1;
 }
 
 /* Prayer Section (Row 3) */
 .dashboard__prayer-section--horizontal {
-    /* Fill the 15vh slot */
-    height: calc(100% - 1rem);
+    height: 210px;
+    /* Increased 1.5x from 140px */
     width: 100%;
     background: var(--color-surface);
-    border-radius: var(--radius-lg);
+    /* border-radius: var(--radius-lg); */
     overflow: hidden;
-    margin-bottom: 0;
-    align-self: center;
 }
 
 /* Legacy styles for vertical layouts */
@@ -200,8 +307,8 @@
 /* Settings Button */
 .dashboard__settings-btn {
     position: fixed;
-    bottom: 5rem;
-    right: 1rem;
+    bottom: 0.5rem;
+    right: 0.5rem;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -463,6 +570,8 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
+
+    /* Vertical Layouts */
     .dashboard__main {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto;
@@ -472,19 +581,86 @@
         grid-column: span 2;
         order: -1;
     }
+
+    /* Horizontal Layout */
+    .dashboard__custom-header {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .dashboard__header-col-3 {
+        grid-column: span 2;
+        justify-content: center;
+        padding-right: 0;
+        margin-top: 1rem;
+        border-top: 1px solid var(--color-border);
+        padding-top: 1rem;
+    }
 }
 
 @media (max-width: 768px) {
+
+    /* Vertical Layouts */
     .dashboard__main {
         grid-template-columns: 1fr;
     }
 
     .dashboard__media-section {
         grid-column: span 1;
-        min-height: 200px;
+        min-height: 250px;
+    }
+
+    .dashboard__prayer-aside {
+        display: none;
+        /* Hide sidebar on mobile, maybe rely on bottom or another view */
+    }
+
+    /* Horizontal Layout */
+    .dashboard__custom-header {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .dashboard__header-col-1 {
+        justify-content: center;
+    }
+
+    .dashboard__header-col-2 {
+        border: none;
+        border-top: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+        padding: 1rem 0;
+    }
+
+    .dashboard__header-col-3 {
+        grid-column: span 1;
+        border-top: none;
+    }
+
+    .dashboard__main-grid {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .dashboard__visible-col-1 {
+        min-height: 250px;
     }
 
     .screensaver__clock {
         font-size: 8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard__custom-header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dashboard__prayer-section--horizontal {
+        height: 100px;
     }
 }

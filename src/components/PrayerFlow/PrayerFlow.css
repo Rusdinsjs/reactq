@@ -1,0 +1,412 @@
+/* Prayer Flow Styles */
+
+.prayer-flow {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    /* Deep Dark Blue/Black Radial Gradient */
+    background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+    overflow: hidden;
+}
+
+/* Common Screen Layout */
+.prayer-flow-screen {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.prayer-flow-screen__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Background Animation Effect */
+.prayer-flow-screen::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vmax;
+    height: 100vmax;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.03) 0%, transparent 60%);
+    /* Subtle blue glow */
+    animation: pulse-slow 8s infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ---------- Prayer Time Arrived Screen ---------- */
+/* ---------- Prayer Time Arrived Screen ---------- */
+.prayer-time-screen__label {
+    font-size: 2.5vw;
+    text-transform: uppercase;
+    letter-spacing: 0.8rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 2vh;
+    font-weight: 300;
+    opacity: 0.9;
+    position: absolute;
+    top: 8vh;
+}
+
+.prayer-time-screen__glass-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 3rem;
+    padding: 6vh 4vw;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    width: 70vw;
+    position: relative;
+    z-index: 2;
+    animation: scale-in 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    margin-bottom: 2vh;
+}
+
+.prayer-time-screen__prayer-name {
+    font-size: 16vw;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 0.9;
+    /* White to Silver Gradient */
+    background: linear-gradient(to bottom, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 30px rgba(var(--color-primary-rgb), 0.3));
+    margin-bottom: 3vh;
+}
+
+.prayer-time-screen__icon-wrapper {
+    margin-bottom: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0 0 15px rgba(var(--color-primary-rgb), 0.4));
+}
+
+.prayer-time-screen__icon {
+    width: 10vh;
+    height: 10vh;
+    color: var(--color-text);
+    opacity: 0.9;
+}
+
+.prayer-time-screen__status {
+    font-size: 3vw;
+    text-transform: uppercase;
+    letter-spacing: 0.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 300;
+}
+
+.prayer-time-screen__countdown {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+    color: rgba(255, 255, 255, 0.5);
+    background: transparent;
+    border: none;
+    position: absolute;
+    bottom: 5vh;
+}
+
+/* ---------- Adzan Screen ---------- */
+.adzan-screen__title {
+    font-size: 3vw;
+    font-weight: 300;
+    letter-spacing: 0.8rem;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    position: absolute;
+    top: 8vh;
+    opacity: 0.8;
+}
+
+.adzan-screen__glass-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 3rem;
+    padding: 8vh 4vw;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    width: 65vw;
+    /* Contain width to keep text 'filling' it */
+    position: relative;
+    z-index: 2;
+    animation: scale-in 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.adzan-screen__prayer-name {
+    font-size: 16vw;
+    /* Massive */
+    font-weight: 800;
+    text-transform: uppercase;
+    /* Premium Silver/White Gradient */
+    background: linear-gradient(to bottom, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.6));
+    line-height: 0.9;
+    margin-bottom: 4vh;
+    width: 100%;
+}
+
+.adzan-screen__visualizer {
+    height: 12vh;
+    width: 80%;
+    /* Golden Accent Glow for Visualizer */
+    filter: drop-shadow(0 0 15px rgba(234, 179, 8, 0.4));
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.adzan-screen__countdown {
+    position: absolute;
+    bottom: 5vh;
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    opacity: 0.5;
+    letter-spacing: 0.2rem;
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse-slow {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.5;
+    }
+}
+
+@keyframes scale-in {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Iqamah Wait Screen - Modernized */
+.iqamah-wait-screen {
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Premium Dark Gradient */
+    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+}
+
+.iqamah-wait-screen__title {
+    font-size: 8vh;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.8rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1vh;
+}
+
+.iqamah-wait-screen__subtitle {
+    font-size: 14vh;
+    font-weight: 800;
+    text-transform: uppercase;
+    /* White to Silver Gradient */
+    background: linear-gradient(to bottom, #ffffff 0%, #cbd5e1 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.2));
+    margin-bottom: 2vh;
+}
+
+/* Huge Countdown - 70% Screen Width/Feel */
+.iqamah-wait-screen__countdown {
+    font-size: 25vw;
+    font-weight: 800;
+    line-height: 0.9;
+    /* White to Silver Gradient */
+    background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.15));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    font-family: var(--font-mono);
+}
+
+.iqamah-wait-screen__label {
+    display: none;
+    /* Simplify */
+}
+
+/* Prayer Period Screen (Waktu Sholat Duration) */
+.prayer-period-screen {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Deep Dark Blue/Black */
+    background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+    text-align: center;
+}
+
+.prayer-period-screen__title {
+    font-size: 8vw;
+    text-transform: uppercase;
+    letter-spacing: 0.5rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1vh;
+    opacity: 0.8;
+}
+
+.prayer-period-screen__prayer-name {
+    /* Reduced to 85% of previous 17vw */
+    font-size: 14.5vw;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 0.9;
+    /* Subtle White-to-Silver Gradient */
+    background: linear-gradient(to bottom, #ffffff 10%, #94a3b8 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 40px rgba(var(--color-primary-rgb), 0.4));
+    margin-bottom: 2vh;
+}
+
+.prayer-period-screen__countdown {
+    font-family: var(--font-mono);
+    /* Enlarge 1.3x from 7.8vw */
+    font-size: 10vw;
+    color: var(--color-accent);
+    /* Accent Color */
+    margin-bottom: 6vh;
+    opacity: 1;
+    letter-spacing: 0.2rem;
+    font-weight: 700;
+    text-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.4);
+}
+
+.prayer-period-screen__message {
+    font-size: 2.5vw;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #fff;
+    opacity: 0.9;
+    max-width: 90%;
+    line-height: 1.4;
+    padding: 2.5vh 6vw;
+    /* Pill Shape */
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.05);
+    /* Very subtle glass */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    /* Elegant border */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    animation: pulse 4s infinite ease-in-out;
+}
+
+/* Prayer Active Screen */
+.prayer-active-screen {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem;
+    background: #000;
+    /* Black for minimal distraction */
+}
+
+.prayer-active-screen__header {
+    text-align: center;
+}
+
+.prayer-active-screen__title {
+    font-size: 4rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.prayer-active-screen__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.prayer-active-screen__icon {
+    font-size: 8rem;
+    opacity: 0.2;
+    animation: pulse 4s infinite;
+}
+
+.prayer-active-screen__status {
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 300;
+    letter-spacing: 0.2rem;
+}

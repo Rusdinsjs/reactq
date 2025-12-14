@@ -1,0 +1,274 @@
+/* Prayer Times Component Styles */
+
+/* Base Styles */
+.prayer-times {
+    display: flex;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    height: 100%;
+}
+
+.prayer-times__loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: var(--color-text-secondary);
+    width: 100%;
+}
+
+/* Track - The scrolling container */
+.prayer-times__track {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.5rem;
+}
+
+/* Carousel Animation - Horizontal */
+.prayer-times--carousel.prayer-times--horizontal .prayer-times__track {
+    animation: scrollHorizontal linear infinite;
+    will-change: transform;
+}
+
+/* Carousel Animation - Vertical */
+.prayer-times--carousel.prayer-times--vertical .prayer-times__track {
+    flex-direction: column;
+    animation: scrollVertical linear infinite;
+    will-change: transform;
+}
+
+/* Horizontal Layout */
+.prayer-times--horizontal {
+    width: 100%;
+}
+
+.prayer-times--horizontal .prayer-times__track {
+    flex-direction: row;
+    align-items: center;
+}
+
+/* User request: Increase item width by 1.25x (from 300px to 375px) */
+.prayer-times--horizontal .prayer-times__item {
+    min-width: 375px;
+    justify-content: space-between;
+}
+
+
+/* Vertical Layout */
+.prayer-times--vertical {
+    height: 100%;
+    width: 100%;
+}
+
+.prayer-times--vertical .prayer-times__track {
+    flex-direction: column;
+}
+
+/* Position modifiers */
+.prayer-times--left {
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+.prayer-times--right {
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+}
+
+.prayer-times--top {
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.prayer-times--bottom {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+/* Keyframe Animations */
+@keyframes scrollHorizontal {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scrollVertical {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+/* Prayer Item Styles */
+.prayer-times__item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.25rem;
+    border-radius: var(--radius-md);
+    background: var(--color-background);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.prayer-times__item--active {
+    background: var(--gradient-primary, var(--color-primary));
+    color: white;
+    box-shadow: 0 4px 15px rgba(var(--color-primary-rgb, 99, 102, 241), 0.4);
+}
+
+.prayer-times__item--next {
+    border: 2px solid var(--color-accent);
+}
+
+.prayer-times__icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.prayer-times__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.prayer-times__name {
+    display: flex;
+    flex-direction: column;
+}
+
+.prayer-times__name-id {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.prayer-times__name-ar {
+    font-size: 0.8rem;
+    font-family: 'Amiri', serif;
+    color: var(--color-text-secondary);
+    direction: rtl;
+}
+
+.prayer-times__item--active .prayer-times__name-ar {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.prayer-times__time {
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: 'Roboto Mono', monospace;
+}
+
+/* Increase font size for wider items in horizontal mode */
+.prayer-times--horizontal .prayer-times__time {
+    font-size: 1.8rem;
+}
+
+.prayer-times--horizontal .prayer-times__name-id {
+    font-size: 1.1rem;
+}
+
+.prayer-times__next-badge {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    background: var(--color-accent);
+    color: white;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Countdown Timer Styles */
+.countdown-timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+.countdown-timer__label {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-text-secondary);
+
+}
+
+.countdown-timer__time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-text);
+}
+
+.countdown-timer__segment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.countdown-timer__segment-value {
+    font-size: 5rem;
+    min-width: 1.2ch;
+}
+
+.countdown-timer__segment-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin-top: 0.25rem;
+    font-family: var(--font-main);
+    font-weight: 500;
+}
+
+.countdown-timer__separator {
+    font-size: 4rem;
+    margin: 0 0.5rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    /* Align with numbers visually */
+}
+
+.countdown-timer__prayer-name {
+    margin-top: 0.5rem;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-shadow: 0 0 20px rgba(var(--color-accent-rgb, 245, 158, 11), 0.3);
+    animation: pulse 2s infinite;
+    text-transform: uppercase;
+}
+
+/* Responsive adjustments for countdown */
+@media (max-width: 768px) {
+    .countdown-timer__segment-value {
+        font-size: 3rem;
+    }
+
+    .countdown-timer__separator {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .countdown-timer__prayer-name {
+        font-size: 1.5rem;
+    }
+}

@@ -1,28 +1,25 @@
-
 // Dashboard Page - Main display
 import { MainLayout } from '../layouts';
 import { DateTimeDisplay, DigitalClock, GregorianDate, HijriDate } from '../components/Clock';
 import { PrayerTimesDisplay, CountdownTimer } from '../components/PrayerTimes';
-import { MediaController, RunningText } from '../components/Media';
-import { MosqueHeader } from '../components/MosqueInfo';
-import { AudioManager } from '../components/Audio';
+import { MediaController } from '../components/Media';
+import { MosqueHeader, InfoPuasaSunnah } from '../components/MosqueInfo';
+import { AudioManager, TartilPlayer, TarhimPlayer } from '../components/Audio';
 import { useScreenManager } from '../hooks/useScreenManager';
+import { usePrayerFlow } from '../hooks/usePrayerFlow';
 import { useSettings } from '../hooks/useSettings';
 import './Pages.css';
 
 export function Dashboard() {
     const { navigateTo } = useScreenManager();
     const { display } = useSettings();
+    const { state: prayerFlowState } = usePrayerFlow();
 
     const prayerLayout = display.prayerTimesLayout;
     const isHorizontal = prayerLayout === 'horizontal';
 
     return (
-        <MainLayout
-            showHeader={!isHorizontal}
-            showRunningText={!isHorizontal}
-            noPadding={isHorizontal}
-        >
+        <MainLayout showHeader={!isHorizontal}>
             <AudioManager />
 
             <div className={`dashboard dashboard--prayer-${prayerLayout}`}>
@@ -48,18 +45,6 @@ export function Dashboard() {
                     </header>
                 )}
 
-                {/* Vertical Left Prayer Times */}
-                {prayerLayout === 'vertical-left' && (
-                    <aside className="dashboard__prayer-aside dashboard__prayer-aside--left">
-                        <PrayerTimesDisplay
-                            layout="vertical"
-                            position="left"
-                            carousel={true}
-                            carouselSpeed={display.prayerTimesCarouselSpeed}
-                        />
-                    </aside>
-                )}
-
                 <div className="dashboard__content">
                     {/* Horizontal Layout Specific Structure */}
                     {isHorizontal ? (
@@ -69,9 +54,23 @@ export function Dashboard() {
                                 <MediaController />
                             </div>
 
-                            {/* Content Column 2: Countdown */}
+                            {/* Content Column 2: Split Rows */}
                             <div className="dashboard__visible-col-2">
-                                <CountdownTimer showPrayerName={true} showLabels={true} />
+                                {/* Row 1: Countdown Timer */}
+                                <div className="dashboard__col-2-row-1">
+                                    <CountdownTimer showPrayerName={true} showLabels={true} />
+                                </div>
+
+                                {/* Row 2: Info Puasa or Audio Player */}
+                                <div className="dashboard__col-2-row-2">
+                                    {prayerFlowState === 'pre-prayer' ? (
+                                        <TartilPlayer className="dashboard__audio-player" />
+                                    ) : prayerFlowState === 'tarhim' ? (
+                                        <TarhimPlayer className="dashboard__audio-player" />
+                                    ) : (
+                                        <InfoPuasaSunnah />
+                                    )}
+                                </div>
                             </div>
                         </div>
                     ) : (
@@ -91,22 +90,30 @@ export function Dashboard() {
 
                     {/* Bottom: Horizontal Prayer Times (Row 3) */}
                     {isHorizontal && (
-                        <>
-                            <div className="dashboard__prayer-section dashboard__prayer-section--horizontal">
-                                <PrayerTimesDisplay
-                                    layout="horizontal"
-                                    position="bottom"
-                                    carousel={true}
-                                    carouselSpeed={display.prayerTimesCarouselSpeed}
-                                />
-                            </div>
-                            {/* Running Text (Row 4) - Internal to grid for horizontal layout */}
-                            <div className="dashboard__running-text-container">
-                                <RunningText />
-                            </div>
-                        </>
+                        <div className="dashboard__prayer-section dashboard__prayer-section--horizontal">
+                            <PrayerTimesDisplay
+                                layout="horizontal"
+                                position="bottom"
+                                carousel={true}
+                                carouselSpeed={display.prayerTimesCarouselSpeed}
+                            />
+                        </div>
                     )}
                 </div>
+
+
+                {/* Vertical Left Prayer Times */}
+                {prayerLayout === 'vertical-left' && (
+                    <aside className="dashboard__prayer-aside dashboard__prayer-aside--left">
+                        <PrayerTimesDisplay
+                            layout="vertical"
+                            position="left"
+                            carousel={true}
+                            carouselSpeed={display.prayerTimesCarouselSpeed}
+                        />
+                    </aside>
+                )}
+
 
                 {/* Vertical Right Prayer Times */}
                 {prayerLayout === 'vertical-right' && (
@@ -119,6 +126,7 @@ export function Dashboard() {
                         />
                     </aside>
                 )}
+
 
                 {/* Settings Button */}
                 <button

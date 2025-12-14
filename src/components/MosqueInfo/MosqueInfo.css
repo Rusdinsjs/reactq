@@ -1,0 +1,55 @@
+/* Mosque Info Styles */
+
+.mosque-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.mosque-header__logo-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: white;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mosque-header__logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.mosque-header__info {
+    display: flex;
+    flex-direction: column;
+}
+
+.mosque-header__name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+}
+
+.mosque-header__address {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .mosque-header__logo-container {
+        width: 60px;
+        height: 60px;
+    }
+
+    .mosque-header__name {
+        font-size: 1.4rem;
+    }
+}

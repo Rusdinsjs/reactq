@@ -1,0 +1,164 @@
+/* Layout Styles */
+
+/* Main Layout */
+.main-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--color-background);
+}
+
+.main-layout__header {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.main-layout__content {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.main-layout__footer {
+    margin-top: auto;
+}
+
+/* Prayer Layout */
+.prayer-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--color-background);
+}
+
+.prayer-layout__content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Settings Modal - Overlay on Dashboard */
+.settings-modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 2rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.settings-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.settings-modal__container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    background: var(--glass-bg, rgba(30, 41, 59, 0.8));
+    border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+    border-radius: var(--radius-lg);
+    box-shadow: var(--glass-shadow, 0 25px 50px rgba(0, 0, 0, 0.5));
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: slideUp 0.3s ease;
+}
+
+.settings-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+}
+
+.settings-modal__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.settings-modal__close-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-modal__close-btn:hover {
+    background: var(--color-error);
+    color: white;
+    transform: scale(1.1);
+}
+
+.settings-modal__body {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+/* Modal animations */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Fullscreen Layout */
+.fullscreen-layout {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+}
+
+.fullscreen-layout__content {
+    text-align: center;
+}
+
+/* Revert settings-layout for compatibility if needed */
+.settings-layout {
+    display: flex;
+    min-height: 100vh;
+    background: var(--color-background);
+}
+
+.settings-layout__content {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-layout__content {
+        padding: 0.5rem;
+    }
+}

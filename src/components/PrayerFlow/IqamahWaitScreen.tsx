@@ -20,7 +20,7 @@ export function IqamahWaitScreen({ className = '' }: IqamahWaitScreenProps) {
             <div className="prayer-flow-screen__content">
                 <div className="iqamah-wait-screen__title">Menunggu Iqamah</div>
                 <div className="iqamah-wait-screen__subtitle">
-                    Sholat {names.id} - {names.ar}
+                    Sholat {names.id}
                 </div>
 
                 <div className="iqamah-wait-screen__countdown">

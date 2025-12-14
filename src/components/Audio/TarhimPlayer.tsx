@@ -16,6 +16,19 @@ export function TarhimPlayer({ className = '' }: TarhimPlayerProps) {
             <div className="tartil-player__title">Tarhim</div>
             <div className="tartil-player__subtitle">الترحيم</div>
 
+            {/* Row 3: Playback Icon */}
+            <div className="playback-icon">
+                <div className="playback-icon__circle"></div>
+                <div className="playback-icon__circle"></div>
+                <div className="playback-icon__wave">
+                    <div className="playback-icon__bar"></div>
+                    <div className="playback-icon__bar"></div>
+                    <div className="playback-icon__bar"></div>
+                    <div className="playback-icon__bar"></div>
+                    <div className="playback-icon__bar"></div>
+                </div>
+            </div>
+
             {isPlaying && currentTrack?.type === 'tarhim' && (
                 <AudioVisualizer isPlaying={true} />
             )}

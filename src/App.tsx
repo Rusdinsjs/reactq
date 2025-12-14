@@ -15,7 +15,7 @@ import './styles/themes/green.css';
 function App() {
   const { currentScreen, isTransitioning } = useScreenManager();
   const { theme, isLoaded } = useSettings();
-  const { isInPrayerFlow } = usePrayerFlow();
+  const { isInPrayerFlow, state } = usePrayerFlow();
 
   // Apply theme to document
   useEffect(() => {
@@ -27,8 +27,12 @@ function App() {
     return <SplashScreen />;
   }
 
-  // Prayer flow takes priority over normal screens
-  if (isInPrayerFlow) {
+  // Prayer flow takes priority, but ONLY for specific states (Adhan, Iqamah Wait, Prayer Time)
+  // Tartil and Tarhim are now handled within the Dashboard component
+  const shouldShowPrayerFlow = isInPrayerFlow &&
+    !['pre-prayer', 'tarhim'].includes(state);
+
+  if (shouldShowPrayerFlow) {
     return <PrayerFlowContainer />;
   }
 

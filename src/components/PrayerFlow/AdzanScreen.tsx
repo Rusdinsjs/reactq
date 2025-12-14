@@ -22,18 +22,12 @@ export function AdzanScreen({ className = '' }: AdzanScreenProps) {
         <div className={`prayer-flow-screen adzan-screen ${className}`}>
             <div className="prayer-flow-screen__content">
                 <div className="adzan-screen__title">ADZAN</div>
-                <div className="adzan-screen__prayer-name">{names.id}</div>
 
-                <div className="adzan-screen__arabic">
-                    الله أكبر الله أكبر
-                    <br />
-                    أشهد أن لا إله إلا الله
-                    <br />
-                    أشهد أن محمداً رسول الله
-                </div>
-
-                <div className="adzan-screen__visualizer">
-                    <AudioVisualizer isPlaying={isPlaying} barCount={12} />
+                <div className="adzan-screen__glass-card">
+                    <div className="adzan-screen__prayer-name">{names.id}</div>
+                    <div className="adzan-screen__visualizer">
+                        <AudioVisualizer isPlaying={isPlaying} barCount={20} />
+                    </div>
                 </div>
 
                 <div className="adzan-screen__countdown">

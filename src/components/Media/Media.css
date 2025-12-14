@@ -1,0 +1,127 @@
+/* Media Component Styles */
+
+/* Media Controller */
+.media-controller {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background: black;
+    border-radius: var(--radius-lg);
+}
+
+.media-controller__content {
+    width: 100%;
+    height: 100%;
+}
+
+.media-controller__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-secondary);
+    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+}
+
+.media-controller__placeholder-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+/* Running Text */
+.running-text {
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding: 0.75rem 0;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    border-top: 1px solid var(--color-border);
+    height: 60px;
+    /* Fixed height for consistency */
+    display: flex;
+    align-items: center;
+}
+
+/* Gradient Fade Edges */
+.running-text::before,
+.running-text::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.running-text::before {
+    left: 0;
+    background: linear-gradient(to right, var(--color-surface), transparent);
+}
+
+.running-text::after {
+    right: 0;
+    background: linear-gradient(to left, var(--color-surface), transparent);
+}
+
+.running-text__content {
+    white-space: nowrap;
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 20s linear infinite;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.running-text__item {
+    display: inline-block;
+    padding: 0 2rem;
+}
+
+.running-text__separator {
+    color: var(--color-accent);
+    margin: 0 1rem;
+}
+
+/* Video Player */
+.video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Image Carousel */
+.image-carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.image-carousel__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.image-carousel__image--active {
+    opacity: 1;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(-100%, 0);
+    }
+}

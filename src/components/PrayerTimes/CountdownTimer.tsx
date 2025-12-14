@@ -28,7 +28,11 @@ export function CountdownTimer({
             <div className="countdown-timer__label">
                 Waktu Menuju
             </div>
-
+            {showPrayerName && (
+                <div className="countdown-timer__prayer-name">
+                    SHOLAT {getDisplayName(nextPrayer.name)}
+                </div>
+            )}
             <div className="countdown-timer__time">
                 {countdown.hasHours && (
                     <>
@@ -52,12 +56,6 @@ export function CountdownTimer({
                     {showLabels && <span className="countdown-timer__segment-label">Detik</span>}
                 </div>
             </div>
-
-            {showPrayerName && (
-                <div className="countdown-timer__prayer-name">
-                    {getDisplayName(nextPrayer.name)}
-                </div>
-            )}
         </div>
     );
 }
